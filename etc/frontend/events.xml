@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * ViraXpress - https://www.viraxpress.com
+ *
+ * LICENSE AGREEMENT
+ *
+ * This file is part of the ViraXpress package and is licensed under the ViraXpress license agreement.
+ * You can view the full license at:
+ * https://www.viraxpress.com/license
+ *
+ * By utilizing this file, you agree to comply with the terms outlined in the ViraXpress license.
+ *
+ * DISCLAIMER
+ *
+ * Modifications to this file are discouraged to ensure seamless upgrades and compatibility with future releases.
+ *
+ * @category    ViraXpress
+ * @package     ViraXpress_Checkout
+ * @author      ViraXpress
+ * @copyright   © 2024 ViraXpress (https://www.viraxpress.com/)
+ * @license     https://www.viraxpress.com/license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_front_send_response_before">
+        <observer name="set_form_key_observer" instance="ViraXpress\Checkout\Observer\SetFormKeyObserver" />
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="set_guest_order_id_in_session" instance="ViraXpress\Checkout\Observer\StoreOrderIdInSession"/>
+    </event>
+</config>
