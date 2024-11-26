@@ -20,7 +20,11 @@ define([
             if (!customer.isLoggedIn()) {
                 if (currentShippingData && currentShippingData['checkout-data']) {
                     if (currentShippingData['checkout-data']['shippingAddressFromData']) {
-                        checkoutData.setShippingAddressFromData(currentShippingData['checkout-data']['shippingAddressFromData']);
+                        let shippingAddress = currentShippingData['checkout-data']['shippingAddressFromData'];
+                        let filteredAddress = Object.fromEntries(
+                            Object.entries(shippingAddress).filter(([key, value]) => value !== null && value !== "")
+                        );
+                        checkoutData.setShippingAddressFromData(filteredAddress);
                     }
                 }
             }
