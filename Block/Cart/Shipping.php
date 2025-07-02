@@ -83,10 +83,10 @@ class Shipping extends \Magento\Checkout\Block\Cart\Shipping
      * @param TokenFactory $tokenModelFactory
      * @param PriceCurrencyInterface $priceCurrency
      * @param CurrencyInterface $localeCurrency
+     * @param \Magento\Framework\Serialize\Serializer\Json $serializer
+     * @param \Magento\Framework\Serialize\Serializer\JsonHexTag $jsonHexTagSerializer
      * @param array $layoutProcessors
      * @param array $data
-     * @param \Magento\Framework\Serialize\Serializer\Json|null $serializer
-     * @param \Magento\Framework\Serialize\Serializer\JsonHexTag|null $jsonHexTagSerializer
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -96,15 +96,24 @@ class Shipping extends \Magento\Checkout\Block\Cart\Shipping
         TokenFactory $tokenModelFactory,
         PriceCurrencyInterface $priceCurrency,
         CurrencyInterface $localeCurrency,
+        \Magento\Framework\Serialize\Serializer\Json $serializer,
+        \Magento\Framework\Serialize\Serializer\JsonHexTag $jsonHexTagSerializer,
         array $layoutProcessors = [],
-        array $data = [],
-        \Magento\Framework\Serialize\Serializer\Json $serializer = null,
-        \Magento\Framework\Serialize\Serializer\JsonHexTag $jsonHexTagSerializer = null
+        array $data = []
     ) {
         $this->tokenModelFactory = $tokenModelFactory;
         $this->priceCurrency = $priceCurrency;
         $this->localeCurrency = $localeCurrency;
-        parent::__construct($context, $customerSession, $checkoutSession, $configProvider, $layoutProcessors, $data, $serializer, $jsonHexTagSerializer);
+        parent::__construct(
+            $context,
+            $customerSession,
+            $checkoutSession,
+            $configProvider,
+            $layoutProcessors,
+            $data,
+            $serializer,
+            $jsonHexTagSerializer
+        );
     }
 
     /**
